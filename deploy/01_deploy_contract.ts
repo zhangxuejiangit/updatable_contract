@@ -33,8 +33,10 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
     log: true,
   });
 
+  console.log("===========================================================================");
   console.log("Proxy deployed to:", myContract.address);
   console.log("ZxjLogicImpl deployed to:", myContract.implementation);
+  console.log("===========================================================================");
 
   addressList[network.name].MyContract = myContract.implementation;
   addressList[network.name].MyProxy = myContract.address;

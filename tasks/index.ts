@@ -1,16 +1,17 @@
 import { task, types } from "hardhat/config";
 import { readAddressList } from "../scripts/helper";
-import { StandardImpl__factory } from "../typechain-types";
+import { ZxjLogicImpl__factory } from "../typechain-types";
 
 task("getValue").setAction(async (_, hre) => {
   const { network } = hre;
   const [dev] = await hre.ethers.getSigners();
-  const addressList = readAddressList();
 
-  const myContract = new StandardImpl__factory(dev).attach(
+  const addressList = readAddressList();
+  const myContract = new ZxjLogicImpl__factory(dev).attach(
     addressList[network.name].MyContract
   );
-  const value = await myContract.value();
+
+  const value = await myContract.getValue();
   console.log("value: ", value.toString());
 });
 
@@ -19,7 +20,7 @@ task("getVersion").setAction(async (_, hre) => {
   const [dev] = await hre.ethers.getSigners();
   const addressList = readAddressList();
 
-  const myContract = new StandardImpl__factory(dev).attach(
+  const myContract = new ZxjLogicImpl__factory(dev).attach(
     addressList[network.name].MyContract
   );
   const version = await myContract.VERSION();
@@ -33,12 +34,12 @@ task("setValue")
     const [dev] = await hre.ethers.getSigners();
     const addressList = readAddressList();
 
-    const myContract = new StandardImpl__factory(dev).attach(
+    const myContract = new ZxjLogicImpl__factory(dev).attach(
       addressList[network.name].MyContract
     );
     const tx = await myContract.setValue(taskArgs.value);
     console.log("tx: ", await tx.wait());
 
-    const currentValue = await myContract.value();
+    const currentValue = await myContract.zxjValue();
     console.log("currentValue: ", currentValue.toString());
   });
