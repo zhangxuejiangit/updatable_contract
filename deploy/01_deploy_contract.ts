@@ -9,7 +9,8 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
   console.log("Deploying My Contract with account:", deployer);
 
   const addressList = readAddressList();
-
+    
+  // proxyContract: "TransparentUpgradeableProxy",StandardProxy目前还没调通
   const proxyOptions: ProxyOptions = {
     proxyContract: "TransparentUpgradeableProxy",
     viaAdminContract: "ProxyAdmin",
@@ -33,9 +34,10 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
   });
 
   console.log("Proxy deployed to:", myContract.address);
-  console.log("Implementation deployed to:", myContract.implementation);
+  console.log("ZxjLogicImpl deployed to:", myContract.implementation);
 
-  addressList[network.name].MyContract = myContract.address;
+  addressList[network.name].MyContract = myContract.implementation;
+  addressList[network.name].MyProxy = myContract.address;
   storeAddressList(addressList);
 };
 

@@ -2,13 +2,12 @@
 
 pragma solidity ^0.8.10;
 
-contract StandardImpl {
-    // uint256 public constant VERSION = 1;
-    uint256 public constant VERSION = 2;
+contract ZxjLogicImpl {
+    uint256 public constant VERSION = 1;
 
     bool public initialized;
 
-    uint256 public value;
+    uint256 public zxjValue;
 
     modifier initializer() {
         require(!initialized, "Only initialize once");
@@ -17,10 +16,10 @@ contract StandardImpl {
     }
 
     function initialize(uint256 _initValue) public initializer {
-        value = _initValue;
+        zxjValue = _initValue;
     }
 
     function setValue(uint256 _newValue) public {
-        value = _newValue + 10;
+        zxjValue = _newValue + 15;
     }
 }

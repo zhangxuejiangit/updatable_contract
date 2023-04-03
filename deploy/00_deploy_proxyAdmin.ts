@@ -19,6 +19,7 @@ const func: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
     log: true,
   });
   console.log("ProxyAdmin deployed to:", proxyAdmin.address);
+  console.log(network.name);
 
   addressList[network.name].ProxyAdmin = proxyAdmin.address;
   storeAddressList(addressList);
