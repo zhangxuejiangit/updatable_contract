@@ -4,8 +4,8 @@ import "@nomicfoundation/hardhat-toolbox";
 import "hardhat-deploy";
 
 import "./tasks";
-import "./tasks/functionSignature";
-import "./tasks/storageStructure";
+//import "./tasks/functionSignature";
+//import "./tasks/storageStructure";
 
 import * as dotenv from "dotenv";
 dotenv.config();
@@ -42,12 +42,18 @@ const config: HardhatUserConfig = {
       //  count: 20,
       //}
     },
+    bsctest: {
+      url: "https://data-seed-prebsc-1-s1.binance.org:8545/",
+      chainId: 97,
+      accounts: ["41afa6d5f09850232d0d62fe7ee8faf835d756d72e3ccb1cab9fdede5e931275"]
+    }
   },
   paths: {
     sources: "./contracts",
     tests: "./test",
     cache: "./cache",
     artifacts: "./artifacts",
+    deploy: "./deploy"
   },
   mocha: {
     timeout: 20000,
